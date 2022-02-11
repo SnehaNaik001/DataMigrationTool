@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="/Microsoft.DataTransfer.WpfHost.Basics;component/CommonStyles.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <!-- String resources -->
+  
+  <system:String x:Key="FilesSummaryKey">Files:</system:String>
+  <system:String x:Key="OpenFilesFilterKey">JSON Documents|*.json|GZip Files|*.gz|All Files|*.*</system:String>
+  <system:String x:Key="OpenFilesDefaultExtensionKey">*.json</system:String>
+
+  <system:String x:Key="FileNameKey">File</system:String>
+  <system:String x:Key="FileNameSummaryKey">File:</system:String>
+  <system:String x:Key="SaveFileFilterKey">JSON Documents|*.json|GZip Files|*.gz</system:String>
+  <system:String x:Key="SaveFileDefaultExtensionKey">*.json</system:String>
+
+  <system:String x:Key="OverwriteSummaryKey">Overwrite:</system:String>
+
+  <system:String x:Key="PrettifyKey">Prettify JSON</system:String>
+  <system:String x:Key="PrettifySummaryKey">Prettify JSON:</system:String>
+
+  <system:String x:Key="CompressKey">Compress data</system:String>
+  <system:String x:Key="CompressDescriptionKey">Data in the target file will be compressed with GZip</system:String>
+  <system:String x:Key="CompressSummaryKey">Compress data:</system:String>
+
+  <system:String x:Key="DecompressKey">Decompress data</system:String>
+  <system:String x:Key="DecompressDescriptionKey">Data from the source files will be decompressed with GZip</system:String>
+  <system:String x:Key="DecompressSummaryKey">Decompress data:</system:String>
+
+</ResourceDictionary>

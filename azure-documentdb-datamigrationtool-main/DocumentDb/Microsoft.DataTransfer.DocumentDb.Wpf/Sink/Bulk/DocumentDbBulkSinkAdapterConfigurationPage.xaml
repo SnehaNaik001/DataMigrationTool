@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="Microsoft.DataTransfer.DocumentDb.Wpf.Sink.Bulk.DocumentDbBulkSinkAdapterConfigurationPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:bc="clr-namespace:Microsoft.DataTransfer.WpfHost.Basics.Controls;assembly=Microsoft.DataTransfer.WpfHost.Basics"
+             xmlns:shared="clr-namespace:Microsoft.DataTransfer.DocumentDb.Wpf.Shared"
+             xmlns:sink="clr-namespace:Microsoft.DataTransfer.DocumentDb.Wpf.Sink"
+             mc:Ignorable="d" x:ClassModifier="internal"
+             d:DesignHeight="300" d:DesignWidth="300">
+  
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="..\..\XamlResources.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+
+      <Style x:Key="CollectionsList" TargetType="bc:EditableStringsListControl">
+        <Setter Property="Height" Value="75" />
+      </Style>
+    </ResourceDictionary>
+  </UserControl.Resources>
+
+  <AdornerDecorator>
+    <ScrollViewer Style="{StaticResource ScrollWrapper}">
+      <StackPanel Style="{StaticResource FixScrollViewerAdorner}">
+        <shared:DocumentDbAdapterConnectionConfigurationControl Configuration="{Binding}" />
+
+        <DockPanel Style="{StaticResource OptionElement}">
+          <bc:ToolTipDecorator DockPanel.Dock="Top" ToolTip="{DynamicResource CollectionsDescriptionKey}">
+            <Label Content="{DynamicResource CollectionsKey}" />
+          </bc:ToolTipDecorator>
+          <bc:EditableStringsListControl DockPanel.Dock="Bottom" Style="{StaticResource CollectionsList}" Items="{Binding EditableCollections}" />
+        </DockPanel>
+
+        <StackPanel Style="{StaticResource OptionElement}">
+          <bc:ToolTipDecorator ToolTip="{DynamicResource BulkPartitionKeyDescriptionKey}">
+            <Label Content="{DynamicResource BulkPartitionKeyKey}" />
+          </bc:ToolTipDecorator>
+          <TextBox Text="{Binding PartitionKey, UpdateSourceTrigger=PropertyChanged, TargetNullValue={x:Static system:String.Empty}}" />
+        </StackPanel>
+
+        <sink:DocumentDbSinkAdapterCommonConfigurationControl DataContext="{Binding}" />
+
+        <Expander Style="{DynamicResource OptionElement}" Header="{DynamicResource AdvancedConfigurationTitleKey}">
+          <StackPanel>
+            <StackPanel Style="{StaticResource OptionElement}">
+              <bc:ToolTipDecorator ToolTip="{DynamicResource StoredProcFileDescriptionKey}">
+                <Label Content="{DynamicResource StoredProcFileKey}" />
+              </bc:ToolTipDecorator>
+              
+              <bc:OpenFileControl
+                FileName="{Binding StoredProcFile, UpdateSourceTrigger=PropertyChanged}"
+                Filter="{DynamicResource StoredProcFileFilter}"
+                DefaultExtension="{DynamicResource StoredProcFileDefaultExtension}"/>
+            </StackPanel>
+            
+            <StackPanel Style="{StaticResource OptionElement}">
+              <Label Content="{DynamicResource BatchSizeKey}" />
+              <TextBox Text="{Binding BatchSize, UpdateSourceTrigger=PropertyChanged, TargetNullValue={x:Static system:String.Empty}}" />
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource OptionElement}">
+              <Label Content="{DynamicResource MaxScriptSizeKey}" />
+              <TextBox Text="{Binding MaxScriptSize, UpdateSourceTrigger=PropertyChanged, TargetNullValue={x:Static system:String.Empty}}" />
+            </StackPanel>
+
+            <sink:DocumentDbSinkAdapterAdvancedConfigurationControl DataContext="{Binding}" />
+          </StackPanel>
+        </Expander>
+      </StackPanel>
+    </ScrollViewer>
+  </AdornerDecorator>
+  
+</UserControl>
